@@ -1,7 +1,7 @@
-import * as mysql from "mysql";
+import mysql from "mysql";
 
-import * as Koa from "koa2";
-import * as Router from "@koa/router"
+import Koa from "koa2";
+import Router from "@koa/router"
 
 import { v4 as uuidv4 } from "uuid";
 
