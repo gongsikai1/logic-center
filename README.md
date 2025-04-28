@@ -7,7 +7,10 @@ import { BackEnd } from 'logic-center'
 
 // mysql
 
-const { connect, queryInit } = BackEnd.mysql
+const {
+    connect,
+    queryInit
+} = BackEnd.mysql
 
 const connection = connect({
     host: 'localhost',
@@ -24,7 +27,17 @@ const fun = async () => {
 // koa2
 
 
-const { app, router, resError, resOk, encodeSqlParams, getQuery, getBody, getHeaders } = BackEnd.koa
+const {
+    app,
+    router,
+    resError,
+    resOk,
+    encodeSqlParams,
+    getQuery,
+    getBody,
+    getHeaders,
+    getUuid
+} = BackEnd.koa
 
 router.get('/error', (ctx, next) => {
     ctx.body = resError('error message')
@@ -39,6 +52,7 @@ router.get('/ok', (ctx, next) => {
 }
 
 router.post('/encodeSqlParams', (ctx, next) => {
+    const uuid = getUuid()
     const { name } = ctx.request.body
     await MysqlQuery(`SELECT * FROM table_name where name = ""${encodeSqlParams(name)}"`)
 }

@@ -1,6 +1,9 @@
 import mysql from 'mysql';
+
 import * as Koa from "koa2";
 import * as Router from "@koa/router"
+
+import { v4 as uuidv4 } from "uuid";
 
 const koaApp = new Koa();
 const koaRouter = new Router()
@@ -49,6 +52,8 @@ const koaGetHeaders = (ctx) => {
     return ctx.request.headers;
 }
 
+const koaUuid = () =>  uuidv4()
+
 const Utils = {
     mysql: {
         connect: mysqlConnect,
@@ -63,6 +68,7 @@ const Utils = {
         getQuery: koaGetQuery,
         getBody: koaGetBody,
         getHeaders: koaGetHeaders,
+        getUuid: koaUuid
     }
 }
 
