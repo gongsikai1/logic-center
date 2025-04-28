@@ -30,7 +30,7 @@ const mysqlGetQueryInit = (connection) => (sqlString) => new Promise((resolve, r
     });
 })
 
-const koaSetEncodeSqlParams = (data) => encodeURIComponent(data)
+const koaGetEncodeSqlParams = (data) => encodeURIComponent(data)
 
 const koaSetError = (message = '') => {
     return JSON.stringify({ status: -1, data: [], msg: message }, null, 2)
@@ -64,7 +64,7 @@ const Utils = {
         router: koaRouter,
         setError: koaSetError,
         setOk: koaSetOk,
-        setEncodeSqlParams: koaSetEncodeSqlParams,
+        getEncodeSqlParams: koaGetEncodeSqlParams,
         getQuery: koaGetQuery,
         getBody: koaGetBody,
         getHeaders: koaGetHeaders,
