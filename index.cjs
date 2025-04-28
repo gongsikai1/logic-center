@@ -1,4 +1,4 @@
-import FrontEnd from './FrontEnd/index.cjs';
-import BackEnd from './BackEnd/index.cjs';
+const FrontEnd = require('./FrontEnd/index.cjs');
+const BackEnd = require('./BackEnd/index.cjs');
 
 module.exports = { FrontEnd, BackEnd };
