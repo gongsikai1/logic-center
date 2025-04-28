@@ -22,10 +22,22 @@ const mysqlQueryInit = (connection) => (sqlString) => new Promise((resolve, reje
     });
 })
 
+const koaResError = (message = '') => {
+    return JSON.stringify({ status: -1, data: [], msg: message }, null, 2)
+}
+
+const koaResOk = (data = []) => {
+    return JSON.stringify({ status: 0, data, msg: '' }, null, 2)
+}
+
 const Utils = {
     mysql: {
         connect: mysqlConnect,
-        queryInit: mysqlQueryInit
+        queryInit: mysqlQueryInit,
+    },
+    koa: {
+        resError: koaResError,
+        resOk: koaResOk,
     }
 }
 
