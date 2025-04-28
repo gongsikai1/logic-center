@@ -1,4 +1,4 @@
-import mysql from 'mysql';
+import * as mysql from "mysql";
 
 import * as Koa from "koa2";
 import * as Router from "@koa/router"
@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 const koaApp = new Koa();
 const koaRouter = new Router()
 
-const mysqlConnect = ({ host, user, password, database }) => {
+const mysqlGetConnect = ({ host, user, password, database }) => {
     const connection = mysql.createConnection({
         host: host || "localhost",
         user: user || "root",
@@ -19,7 +19,7 @@ const mysqlConnect = ({ host, user, password, database }) => {
     return connection;
 }
 
-const mysqlQueryInit = (connection) => (sqlString) => new Promise((resolve, reject) => {
+const mysqlGetQueryInit = (connection) => (sqlString) => new Promise((resolve, reject) => {
     connection.query(sqlString, (error, result, fields) => {
     if (error) {
         resolve({ status: -1, data: [], msg: error });
@@ -30,13 +30,13 @@ const mysqlQueryInit = (connection) => (sqlString) => new Promise((resolve, reje
     });
 })
 
-const koaEncodeSqlParams = (data) => encodeURIComponent(data)
+const koaSetEncodeSqlParams = (data) => encodeURIComponent(data)
 
-const koaResError = (message = '') => {
+const koaSetError = (message = '') => {
     return JSON.stringify({ status: -1, data: [], msg: message }, null, 2)
 }
 
-const koaResOk = (data = []) => {
+const koaSetOk = (data = []) => {
     return JSON.stringify({ status: 0, data, msg: '' }, null, 2)
 }
 
@@ -56,15 +56,15 @@ const koaUuid = () =>  uuidv4()
 
 const Utils = {
     mysql: {
-        connect: mysqlConnect,
-        queryInit: mysqlQueryInit,
+        getConnect: mysqlGetConnect,
+        getQueryInit: mysqlGetQueryInit,
     },
     koa: {
         app: koaApp,
         router: koaRouter,
-        resError: koaResError,
-        resOk: koaResOk,
-        encodeSqlParams: koaEncodeSqlParams,
+        setError: koaSetError,
+        setOk: koaSetOk,
+        setEncodeSqlParams: koaSetEncodeSqlParams,
         getQuery: koaGetQuery,
         getBody: koaGetBody,
         getHeaders: koaGetHeaders,
