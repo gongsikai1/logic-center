@@ -23,7 +23,8 @@ const fun = async () => {
 
 // koa2
 
-const { app, router, resError, resOk } = BackEnd.koa
+
+const { app, router, resError, resOk, encodeSqlParams, getQuery, getBody, getHeaders } = BackEnd.koa
 
 router.get('/error', (ctx, next) => {
     ctx.body = resError('error message')
@@ -35,6 +36,11 @@ router.get('/ok', (ctx, next) => {
 
 router.get('/ok', (ctx, next) => {
     ctx.body = resOk({})
+}
+
+router.post('/encodeSqlParams', (ctx, next) => {
+    const { name } = ctx.request.body
+    await MysqlQuery(`SELECT * FROM table_name where name = ""${encodeSqlParams(name)}"`)
 }
 
 ```

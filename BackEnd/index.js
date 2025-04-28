@@ -27,12 +27,26 @@ const mysqlQueryInit = (connection) => (sqlString) => new Promise((resolve, reje
     });
 })
 
+const koaEncodeSqlParams = (data) => encodeURIComponent(data)
+
 const koaResError = (message = '') => {
     return JSON.stringify({ status: -1, data: [], msg: message }, null, 2)
 }
 
 const koaResOk = (data = []) => {
     return JSON.stringify({ status: 0, data, msg: '' }, null, 2)
+}
+
+const koaGetQuery = (ctx) => {
+    return ctx.request.query; 
+}
+
+const koaGetBody = (ctx) => {
+    return ctx.request.body; 
+}
+
+const koaGetHeaders = (ctx) => {
+    return ctx.request.headers;
 }
 
 const Utils = {
@@ -45,6 +59,10 @@ const Utils = {
         router: koaRouter,
         resError: koaResError,
         resOk: koaResOk,
+        encodeSqlParams: koaEncodeSqlParams,
+        getQuery: koaGetQuery,
+        getBody: koaGetBody,
+        getHeaders: koaGetHeaders,
     }
 }
 
