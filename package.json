@@ -1,0 +1,37 @@
+{
+  "name": "logic-center",
+  "version": "1.0.3",
+  "description": "logic center",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mysql",
+    "koa",
+    "koa2",
+    "router"
+  ],
+  "author": "",
+  "dependencies": {
+    "@koa/router": "^13.1.0",
+    "koa2": "^2.0.0-alpha.7",
+    "mysql": "^2.18.1"
+  },
+  "bugs": {
+    "url": "https://github.com/gongsikai1/logic-center/issues",
+    "email": "demo@163.com"
+  },
+  "contributors": [
+    {
+      "name": "gongsikai1",
+      "email": "demo@163.com"
+    }
+  ],
+  "homepage": "https://github.com/gongsikai1/logic-center",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gongsikai1/logic-center.git"
+  }
+}
