@@ -33,9 +33,4 @@ router.get('/ok', (ctx, next) => {
     ctx.body = BackEnd.koa.resOk({})
 }
 
-
-resError: koaResError,
-        resOk: koaResOk,
-
-
 ```
