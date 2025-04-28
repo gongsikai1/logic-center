@@ -1,9 +1,7 @@
-import mysql from "mysql";
-
-import Koa from "koa2";
-import Router from "@koa/router"
-
-import { v4 as uuidv4 } from "uuid";
+const mysql = require("mysql");
+const Koa = require("koa2");
+const Router = require("@koa/router");
+const { v4: uuidv4 } = require("uuid");
 
 const koaApp = new Koa();
 const koaRouter = new Router()
