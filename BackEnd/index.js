@@ -1,4 +1,9 @@
 import mysql from 'mysql';
+import * as Koa from "koa2";
+import * as Router from "@koa/router"
+
+const koaApp = new Koa();
+const koaRouter = new Router()
 
 const mysqlConnect = ({ host, user, password, database }) => {
     const connection = mysql.createConnection({
@@ -36,6 +41,8 @@ const Utils = {
         queryInit: mysqlQueryInit,
     },
     koa: {
+        app: koaApp,
+        router: koaRouter,
         resError: koaResError,
         resOk: koaResOk,
     }

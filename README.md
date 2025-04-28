@@ -7,13 +7,15 @@ import { BackEnd } from 'logic-center'
 
 // mysql
 
-const connection = BackEnd.mysql.connect({
+const { connect, queryInit } = BackEnd.mysql
+
+const connection = connect({
     host: 'localhost',
     user: 'root',
     password: '123456',
     database: 'database_name'
 })
-const MysqlQuery = BackEnd.mysql.queryInit(connection)
+const MysqlQuery = queryInit(connection)
 
 const fun = async () => {
     await MysqlQuery("SELECT * FROM table_name")
@@ -21,16 +23,18 @@ const fun = async () => {
 
 // koa2
 
+const { app, router, resError, resOk } = BackEnd.koa
+
 router.get('/error', (ctx, next) => {
-    ctx.body = BackEnd.koa.resError('error message')
+    ctx.body = resError('error message')
 }
 
 router.get('/ok', (ctx, next) => {
-    ctx.body = BackEnd.koa.resOk([])
+    ctx.body = resOk([])
 }
 
 router.get('/ok', (ctx, next) => {
-    ctx.body = BackEnd.koa.resOk({})
+    ctx.body = resOk({})
 }
 
 ```
