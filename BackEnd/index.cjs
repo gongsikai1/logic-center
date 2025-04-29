@@ -36,8 +36,8 @@ const koaSetUse = ({ koaBody, koaStatic }) => {
     }
     koaApp
         .use(cors())
-        .use(router.routes())
-        .use(router.allowedMethods());
+        .use(koaRouter.routes())
+        .use(koaRouter.allowedMethods());
 }
 
 const koaGetListen = (port = 3003) => {
