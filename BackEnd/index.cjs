@@ -41,7 +41,7 @@ const koaSetUse = ({ koaBody, koaStatic }) => {
 }
 
 const koaGetListen = (port = 3003) => {
-    return KoaApp.listen(port, () => {
+    return koaApp.listen(port, () => {
         console.log(`Server running on http://localhost:${port}`);
     });
       
