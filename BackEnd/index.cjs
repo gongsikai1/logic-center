@@ -24,7 +24,7 @@ const koaSetUse = ({ koaBody, koaStatic }) => {
             multipart: true,
             ...((koaBody && koaBody.uploadPath) ? {
                 formidable: {
-                    uploadDir: uploadPath,
+                    uploadDir: koaBody.uploadPath,
                     keepExtensions: true,
                 }
             } : {})
