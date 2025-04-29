@@ -44,7 +44,8 @@ const {
     getQuery,
     getBody,
     getHeaders,
-    getUuid
+    getUuid,
+    setUse
 } = BackEnd.koa
 
 router.get('/error', (ctx, next) => {
@@ -64,6 +65,17 @@ router.post('/encodeSqlParams', (ctx, next) => {
     const { name } = ctx.request.body
     await MysqlQuery(`SELECT * FROM table_name where name = ""${setEncodeSqlParams(name)}"`)
 }
+
+setUse({
+    koaBody: {
+        uploadPath: '',
+    },
+    koaStatic: {
+       staticPath: '', 
+    }
+})
+
+const server = getListen(3003)
 
 ```
 

@@ -6,9 +6,47 @@ const http = require('http');
 const { Server } = require('socket.io');
 const lodash = require('lodash');
 
+const { koaBody: koaBodyUse } = require('koa-body');
+const cors = require('@koa/cors');
+const moment = require('moment');
+const fs = require('fs');
+const path = require('path');
+const koaStaticUse = require('koa-static');
+
 
 const koaApp = new Koa();
 const koaRouter = new Router()
+
+const koaSetUse = ({ koaBody, koaStatic }) => {
+    KoaApp
+        .use(koaBodyUse(
+            {
+            multipart: true,
+            ...((koaBody && koaBody.uploadPath) ? {
+                formidable: {
+                    uploadDir: uploadPath,
+                    keepExtensions: true,
+                }
+            } : {})
+            }
+        ))
+    if (koaStatic) {
+        KoaApp
+           .use(koaStaticUse(koaStatic.staticPath))
+    }
+    KoaApp
+        .use(cors())
+        .use(router.routes())
+        .use(router.allowedMethods());
+}
+
+const koaGetListen = (port = 3003) => {
+    return KoaApp.listen(port, () => {
+        console.log(`Server running on http://localhost:${port}`);
+    });
+      
+}
+
 
 const mysqlGetConnect = ({ host, user, password, database }) => {
     const connection = mysql.createConnection({
@@ -64,13 +102,16 @@ const Utils = {
     koa: {
         app: koaApp,
         router: koaRouter,
+        cors,
         setError: koaSetError,
         setOk: koaSetOk,
         getEncodeSqlParams: koaGetEncodeSqlParams,
         getQuery: koaGetQuery,
         getBody: koaGetBody,
         getHeaders: koaGetHeaders,
-        getUuid: koaUuid
+        getUuid: koaUuid,
+        setUse: koaSetUse,
+        getListen: koaGetListen,
     },
     http: {
        http,
