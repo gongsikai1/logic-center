@@ -2,6 +2,10 @@ const mysql = require("mysql");
 const Koa = require("koa2");
 const Router = require("@koa/router");
 const { v4: uuidv4 } = require("uuid");
+const http = require('http');
+const { Server } = require('socket.io');
+const lodash = require('lodash');
+
 
 const koaApp = new Koa();
 const koaRouter = new Router()
@@ -67,6 +71,15 @@ const Utils = {
         getBody: koaGetBody,
         getHeaders: koaGetHeaders,
         getUuid: koaUuid
+    },
+    http: {
+       http,
+    },
+    socket: {
+       Server, 
+    },
+    lodash: {
+        lodash,
     }
 }
 

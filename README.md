@@ -23,9 +23,12 @@ const getMysqlQuery = getQueryInit(connection)
 const fun = async () => {
     await getMysqlQuery("SELECT * FROM table_name")
 }
+```
 
 // koa2
 
+
+```javascript
 
 const {
     app,
@@ -56,5 +59,29 @@ router.post('/encodeSqlParams', (ctx, next) => {
     const { name } = ctx.request.body
     await MysqlQuery(`SELECT * FROM table_name where name = ""${setEncodeSqlParams(name)}"`)
 }
+
+```
+
+// http
+
+```javascript
+
+const { http } = BackEnd.http
+
+```
+
+// socket
+
+```javascript
+
+const { Server } = BackEnd.socket
+
+```
+
+// lodash
+
+```javascript
+
+const { lodash } = BackEnd.lodash
 
 ```
