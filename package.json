@@ -1,6 +1,6 @@
 {
   "name": "logic-center",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "logic center",
   "main": "index.cjs",
   "scripts": {
