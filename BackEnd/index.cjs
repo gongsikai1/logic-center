@@ -18,7 +18,7 @@ const koaApp = new Koa();
 const koaRouter = new Router()
 
 const koaSetUse = ({ koaBody, koaStatic }) => {
-    KoaApp
+    koaApp
         .use(koaBodyUse(
             {
             multipart: true,
@@ -31,10 +31,10 @@ const koaSetUse = ({ koaBody, koaStatic }) => {
             }
         ))
     if (koaStatic) {
-        KoaApp
+        koaApp
            .use(koaStaticUse(koaStatic.staticPath))
     }
-    KoaApp
+    koaApp
         .use(cors())
         .use(router.routes())
         .use(router.allowedMethods());
