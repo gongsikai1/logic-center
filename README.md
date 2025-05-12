@@ -45,6 +45,7 @@ const {
     getBody,
     getHeaders,
     getUuid,
+    koaSetBodyUserNotLogin,
     setUse
 } = BackEnd.koa
 

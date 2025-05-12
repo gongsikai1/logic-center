@@ -94,6 +94,10 @@ const koaGetHeaders = (ctx) => {
 
 const koaUuid = () =>  uuidv4()
 
+const koaSetBodyUserNotLogin = (ctx, msg) => {
+    ctx.body = koaSetError(msg || '用户未登录')
+}
+
 const Utils = {
     mysql: {
         getConnect: mysqlGetConnect,
@@ -110,6 +114,7 @@ const Utils = {
         getBody: koaGetBody,
         getHeaders: koaGetHeaders,
         getUuid: koaUuid,
+        setBodyUserNotLogin: koaSetBodyUserNotLogin,
         setUse: koaSetUse,
         getListen: koaGetListen,
     },
